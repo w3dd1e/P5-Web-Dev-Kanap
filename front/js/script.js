@@ -29,6 +29,7 @@ fetch(productAPI)
             newProductCard.append(newArticle);
             newArticle.append(newImg, newH3, newP);
 
+            newProductCard.setAttribute("href", `./product.html?id=${i}`);
             newImg.setAttribute("src", productData[i].imageUrl);
             newImg.setAttribute("alt", productData[i].altTxt);
             newH3.textContent = productData[i].name;
