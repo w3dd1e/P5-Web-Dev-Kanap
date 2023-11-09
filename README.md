@@ -1,5 +1,5 @@
 # Kanap - eCommerce #
-Project #3 Web Development - OpenClassrooms
+Project #5 Web Development - OpenClassrooms
 
 Forked project with prebuilt back-end API and static front-end code. I am integrating the provided back-end data with the prebuilt front-end HTML and CSS by using Javascript to insert dynamic content. No libaries or frameworks used, only vanilla Javascript.
 
