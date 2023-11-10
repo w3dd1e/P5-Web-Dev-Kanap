@@ -17,15 +17,27 @@ fetch(productAPI)
         }
         let productID = getID();
 
-        //Update title
+        //Update page title
         document.title = `${productData[productID].name}`;
 
         //Insert image into DOM
-        let productImage = document.querySelector(".item__img");
+        const productImage = document.querySelector(".item__img");
         let newImg = document.createElement("img");
         productImage.append(newImg);
         newImg.setAttribute("src", productData[productID].imageUrl);
         newImg.setAttribute("alt", productData[productID].altTxt);
+
+        //Insert product name
+        const productName = document.querySelector("#title");
+        productName.innerHTML = `${productData[productID].name}`;
+
+        //Insert product price
+        const productPrice = document.querySelector("#price");
+        productPrice.innerHTML = `${productData[productID].price}`;
+
+        //Insert product description
+        const productDesc = document.querySelector("#description");
+        productDesc.innerHTML = `${productData[productID].description}`;
     })
     .catch((error) => {
         console.error("Error:", error);
