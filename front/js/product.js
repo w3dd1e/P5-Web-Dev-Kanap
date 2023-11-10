@@ -17,6 +17,9 @@ fetch(productAPI)
         }
         let productID = getID();
 
+        //Update title
+        document.title = `${productData[productID].name}`;
+
         //Insert image into DOM
         let productImage = document.querySelector(".item__img");
         let newImg = document.createElement("img");
