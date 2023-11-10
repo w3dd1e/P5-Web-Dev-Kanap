@@ -16,6 +16,13 @@ fetch(productAPI)
             return url.slice(-1);
         }
         let productID = getID();
+
+        //Insert image into DOM
+        let productImage = document.querySelector(".item__img");
+        let newImg = document.createElement("img");
+        productImage.append(newImg);
+        newImg.setAttribute("src", productData[productID].imageUrl);
+        newImg.setAttribute("alt", productData[productID].altTxt);
     })
     .catch((error) => {
         console.error("Error:", error);
