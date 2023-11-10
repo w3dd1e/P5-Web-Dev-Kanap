@@ -1,5 +1,4 @@
 //GET product data from API URL
-
 const productAPI = "http://localhost:3000/api/products";
 
 fetch(productAPI)
@@ -9,7 +8,15 @@ fetch(productAPI)
         }
         return response.json();
     })
-    .then((productData) => {})
+    .then((productData) => {
+        // Get URL from current product page
+        const url = window.location.href;
+        // Extract product ID from URL
+        function getID() {
+            return url.slice(-1);
+        }
+        let productID = getID();
+    })
     .catch((error) => {
         console.error("Error:", error);
     });
