@@ -9,13 +9,13 @@ fetch(productAPI)
         return response.json();
     })
     .then((productData) => {
-        // Get URL from current product page
-        const url = window.location.href;
-        // Extract product ID from URL
-        function getID() {
-            return url.slice(-1);
-        }
-        let productID = getID();
+        // Get URL from current page
+        const url = new URL(window.location.href);
+
+        //Get product ID from URL
+        const urlParams = new URLSearchParams(url.search);
+        const productID = urlParams.get("id");
+        console.log(productID);
 
         //Update page title
         document.title = `${productData[productID].name}`;
