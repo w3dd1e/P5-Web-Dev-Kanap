@@ -13,7 +13,7 @@ fetch(productAPI)
         //Create product elements in DOM from API data
         //Loop through each object in JSON array and create corresponding elements in item list
 
-        for (let i in productData) {
+        for (let id in productData) {
             let itemsList = document.querySelector("#items");
 
             let newProductCard = document.createElement("a");
@@ -29,11 +29,11 @@ fetch(productAPI)
             newProductCard.append(newArticle);
             newArticle.append(newImg, newH3, newP);
 
-            newProductCard.setAttribute("href", `./product.html?id=${i}`);
-            newImg.setAttribute("src", productData[i].imageUrl);
-            newImg.setAttribute("alt", productData[i].altTxt);
-            newH3.textContent = productData[i].name;
-            newP.textContent = productData[i].description;
+            newProductCard.setAttribute("href", `./product.html?id=${id}`);
+            newImg.setAttribute("src", productData[id].imageUrl);
+            newImg.setAttribute("alt", productData[id].altTxt);
+            newH3.textContent = productData[id].name;
+            newP.textContent = productData[id].description;
         }
     })
     .catch((error) => {

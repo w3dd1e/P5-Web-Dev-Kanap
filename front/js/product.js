@@ -41,11 +41,14 @@ fetch(productAPI)
 
         //Insert product color options
         const productColors = document.querySelector("#colors");
-        for (let i in productData[productID].colors) {
+        for (let colorID in productData[productID].colors) {
             let newOptions = document.createElement("option");
             productColors.append(newOptions);
-            newOptions.setAttribute("value", productData[productID].colors[i]);
-            newOptions.textContent = productData[productID].colors[i];
+            newOptions.setAttribute(
+                "value",
+                productData[productID].colors[colorID]
+            );
+            newOptions.textContent = productData[productID].colors[colorID];
         }
     })
     .catch((error) => {
