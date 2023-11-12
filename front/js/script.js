@@ -16,29 +16,19 @@ fetch(productAPI)
         for (let dataItem in productData) {
             let itemsList = document.querySelector("#items");
 
-            let newProductCard = document.createElement("a");
-            let newArticle = document.createElement("article");
-            let newImg = document.createElement("img");
-            let newH3 = document.createElement("h3");
-            let newP = document.createElement("p");
-
-            newH3.className = "productName";
-            newP.className = "productDescription";
-
-            itemsList.append(newProductCard);
-            newProductCard.append(newArticle);
-            newArticle.append(newImg, newH3, newP);
-
             const productID = productData[dataItem]._id;
 
-            newProductCard.setAttribute(
-                "href",
-                `./product.html?id=${productID}`
-            );
-            newImg.setAttribute("src", productData[dataItem].imageUrl);
-            newImg.setAttribute("alt", productData[dataItem].altTxt);
-            newH3.textContent = productData[dataItem].name;
-            newP.textContent = productData[dataItem].description;
+            let newProductCard = `
+                <a href="./product.html?id=${productID}">
+                    <article>
+                        <img src="${productData[dataItem].imageUrl}" alt="${productData[dataItem].altTxt}">
+                        <h3 class="productName">${productData[dataItem].name}</h3>
+                        <p class="productDescription">${productData[dataItem].description}</p>
+                    </article>
+                </a>
+            `;
+
+            itemsList.insertAdjacentHTML("beforeend", newProductCard);
         }
     })
     .catch((error) => {
