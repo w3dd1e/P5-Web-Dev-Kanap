@@ -27,13 +27,9 @@ fetch(productAPI)
         // Update page title
         document.title = productData.name;
 
-        // Insert product name
+        // Insert product name, price, and description
         setElement("#title", "textContent", productData.name);
-
-        // Insert product price
         setElement("#price", "textContent", productData.price);
-
-        // Insert product description
         setElement("#description", "textContent", productData.description);
 
         // Insert product image into DOM
