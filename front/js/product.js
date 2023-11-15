@@ -15,35 +15,41 @@ fetch(productAPI)
         return response.json();
     })
     .then((productData) => {
-        //Update page title
-        document.title = `${productData.name}`;
+        // Function to insert product data into page by each element selector
+        function setElement(selector, attribute, value) {
+            const element = document.querySelector(selector);
+            if (attribute === "textContent") {
+                element.textContent = value;
+            } else {
+                element.setAttribute(attribute, value);
+            }
+        }
+        // Update page title
+        document.title = productData.name;
 
-        //Insert image into DOM
-        const productImage = document.querySelector(".item__img");
-        let newImg = document.createElement("img");
-        productImage.append(newImg);
-        newImg.setAttribute("src", productData.imageUrl);
-        newImg.setAttribute("alt", productData.altTxt);
+        // Insert product name
+        setElement("#title", "textContent", productData.name);
 
-        //Insert product name
-        const productName = document.querySelector("#title");
-        productName.innerHTML = `${productData.name}`;
+        // Insert product price
+        setElement("#price", "textContent", productData.price);
 
-        //Insert product price
-        const productPrice = document.querySelector("#price");
-        productPrice.innerHTML = `${productData.price}`;
+        // Insert product description
+        setElement("#description", "textContent", productData.description);
 
-        //Insert product description
-        const productDesc = document.querySelector("#description");
-        productDesc.innerHTML = `${productData.description}`;
+        // Insert product image into DOM
+        const imageContainer = document.querySelector(".item__img");
+        let productImage = document.createElement("img");
+        imageContainer.append(productImage);
+        setElement(".item__img img", "src", productData.imageUrl);
+        setElement(".item__img img", "alt", productData.altTxt);
 
-        //Insert product color options
+        // Insert product color options
         const productColors = document.querySelector("#colors");
-        for (let colorID in productData.colors) {
-            let newOptions = document.createElement("option");
-            productColors.append(newOptions);
-            newOptions.setAttribute("value", productData.colors[colorID]);
-            newOptions.textContent = productData.colors[colorID];
+        for (let color of productData.colors) {
+            let newOption = document.createElement("option");
+            newOption.value = color;
+            newOption.textContent = color;
+            productColors.append(newOption);
         }
     })
     .catch((error) => {
