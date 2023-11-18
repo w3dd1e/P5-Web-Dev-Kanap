@@ -13,11 +13,14 @@ const addToCart = document.querySelector("#addToCart");
 
 //Form value variables
 let colorOption = colorSelect.value;
-let quantityOption = quantitySelect.value;
-let cartItem = {
+let quantity = quantitySelect.value;
+let item = {
     id: productID,
    color: colorOption,
 };
+
+//Use localStorage as cart variable for easier readability
+let cart = sessionStorage;
     
 
 //Fetch Data from API then update page with returned data
@@ -65,17 +68,29 @@ fetch(productAPI)
     });
 
 
- //Get color and quantiy from form
- 
-colorSelect.addEventListener("change", (event) => {
+ //Get color and quantiy from form then udpate cartItem object values
+ colorSelect.addEventListener("change", (event) => {
     colorOption = event.target.value;
-    cartItem.color = colorOption;
+    item.color = colorOption;
 });
 quantitySelect.addEventListener("change", (event) => {
-    quantityOption = event.target.value;
-    cartItem.quantity = quantityOption;});
-   
+    quantity = event.target.value;});
+
+    
+    //Add item to cart
+addToCart.addEventListener("click", (event) => {
+    if (colorOption===""||quantity==="0") {
+        alert("Please select a color and quantity.");
+    }
+    else if (cart.hasOwnProperty(JSON.stringify(item))) {
+       cart[JSON.stringify(item)] =  Number(cart[JSON.stringify(item)]) + Number(quantity);
+       alert("Items added to cart!");
+        }
+    else {
+    cart.setItem(JSON.stringify(item), quantity)
+    alert("Item added to cart!");
+}});
 
 
    //Test Button click output
-    addToCart.addEventListener("click", (event) => {console.log(cartItem);});
+    addToCart.addEventListener("click", (event) => {console.log(cart);});
