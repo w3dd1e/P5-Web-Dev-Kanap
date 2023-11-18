@@ -77,17 +77,20 @@ quantitySelect.addEventListener("change", (event) => {
     quantity = event.target.value;});
 
     
-    //Add item to cart
+    //Add item to cart 
 addToCart.addEventListener("click", (event) => {
+    let cartItem = JSON.stringify(item);
+
     if (colorOption===""||quantity==="0") {
         alert("Please select a color and quantity.");
     }
-    else if (cart.hasOwnProperty(JSON.stringify(item))) {
-       cart[JSON.stringify(item)] =  Number(cart[JSON.stringify(item)]) + Number(quantity);
+    //cartItem does not work with Number(), will return NaN
+    else if (cart.hasOwnProperty(cartItem)) {
+       cart[cartItem] =  Number(cart[JSON.stringify(item)]) + Number(quantity);
        alert("Items added to cart!");
         }
     else {
-    cart.setItem(JSON.stringify(item), quantity)
+    cart.setItem(cartItem, quantity)
     alert("Item added to cart!");
 }});
 
