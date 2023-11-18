@@ -95,5 +95,3 @@ addToCart.addEventListener("click", (event) => {
 }});
 
 
-   //Test Button click output
-    addToCart.addEventListener("click", (event) => {console.log(cart);});
