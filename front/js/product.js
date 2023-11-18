@@ -11,6 +11,10 @@ const colorSelect = document.querySelector("#colors");
 const quantitySelect = document.querySelector("#quantity");
 const addToCart = document.querySelector("#addToCart");
 
+//Form value variables
+let colorOption = colorSelect.value;
+let quantityOption = quantitySelect.value;
+    
 
 //Fetch Data from API then update page with returned data
 fetch(productAPI)
@@ -56,5 +60,14 @@ fetch(productAPI)
         console.error("Error:", error);
     });
 
+    
+ //Get color and quantiy from form
+colorSelect.addEventListener("change", (event) => {
+    colorOption = event.target.value;});
+quantitySelect.addEventListener("change", (event) => {
+    quantityOption = event.target.value;});
+   
 
- 
+
+   //Test Button click output
+    addToCart.addEventListener("click", (event) => {console.log(quantityOption, colorOption);});
