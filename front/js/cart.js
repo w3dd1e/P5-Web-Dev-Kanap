@@ -8,6 +8,27 @@ let cartStoredQtys = Object.values(sessionStorage);
 let product ={};
 let productID = "";
 
+for(let item in cartStoredProduct){
+  product = JSON.parse(cartStoredProduct[item]);
+  productID = product.id;}
+
+  //API Data Variables
+const productAPI = `http://localhost:3000/api/products/${productID}`;
+
+fetch(productAPI)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Failed to retrieve product data.");
+        }
+        return response.json();
+    })
+    .then((data) => { 
+     window['productData'+`${productID}`] = data;
+     })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+
 
 
     let newProductCard = `
