@@ -1,16 +1,18 @@
 //DOM Variables
 const cartList = document.querySelector("#cart__items");
+const cartTotalItems = document.querySelector("#totalQuantity");
+const cartTotalPrice = document.querySelector("#totalPrice");
 
 //Use localStorage as cart variable for easier readability
-const cartProduct = Object.keys(sessionStorage);
+const cartStoredProduct = Object.keys(sessionStorage);
 let product ={};
 let productID = "";
-const cartQtys = Object.values(sessionStorage);
+const cartStoredQtys = Object.values(sessionStorage);
 let quantity = "";
 
 //Loop through cart list to display each item on page
-for(let item in cartProduct){
-  product = JSON.parse(cartProduct[item]);
+for(let item in cartStoredProduct){
+  product = JSON.parse(cartStoredProduct[item]);
   productID = product.id;
 
   //API Data Variables
@@ -28,8 +30,8 @@ fetch(productAPI)
       productData = data;
 
       //This variable must be repeated in this callback to prevent varible from changing on loop before being applied to DOM due to async nature of fetch
-      product = JSON.parse(cartProduct[item]);
-      quantity = cartQtys[item];
+      product = JSON.parse(cartStoredProduct[item]);
+      quantity = cartStoredQtys[item];
      
     let newProductCard = `
     <article class="cart__item" data-id="${product.id}" data-color="${product.color}">
@@ -62,7 +64,6 @@ fetch(productAPI)
   console.error("Error:", error);
 });
 };
-
 
 
 
