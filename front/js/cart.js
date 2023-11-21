@@ -71,3 +71,10 @@ for (let item in cartStoredProduct) {
 cartQtys = cartStoredQtys.map((item) => Number(item));
 let totalItems = cartQtys.reduce((sum, current) => sum + current, 0);
 cartTotalItems.textContent = totalItems;
+
+//Calculate total price and insert into DOM
+let totalPrice = priceArray.map((item, id) => item * cartQtys[id]);
+cartTotalPrice.textContent = totalPrice.reduce(
+    (sum, current) => sum + current,
+    0
+);
