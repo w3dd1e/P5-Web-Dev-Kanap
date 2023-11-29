@@ -6,8 +6,7 @@ const cart = sessionStorage;
 const savedProducts = Object.keys(sessionStorage);
 const savedQtys = Object.values(sessionStorage);
 
-//Product Variables
-let productPrices = {};
+//Totals Variables
 let totalItems = 0;
 let totalPrice = 0;
 
