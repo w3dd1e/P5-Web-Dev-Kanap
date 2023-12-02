@@ -30,7 +30,6 @@ for (let item in savedProducts) {
     const productID = JSON.parse(savedProducts[item]);
     fetchProducts(productID.id).then((data) => {
         // Calculate quantities and total price per product
-        productPrices[data._id] = data.price;
         let quantity = savedQtys[item];
         const itemPrice = data.price * quantity;
 
@@ -76,9 +75,6 @@ cartList.addEventListener("change", (event) => {
         //Product Variables from DOM
         let currentQtys = document.querySelectorAll(".itemQuantity");
         let product = event.target.closest("article");
-        let price = product.querySelector(
-            ".cart__item__content__description p:nth-child(3)"
-        ).textContent;
         let quantity = event.target.value;
         let colorOption = product.dataset.color;
         let productID = product.dataset.id;
