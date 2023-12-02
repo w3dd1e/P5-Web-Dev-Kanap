@@ -102,8 +102,8 @@ cartList.addEventListener("change", (event) => {
         updateTotals();
     }
 });
-//
 
+//Update cart on item delete
 cartList.addEventListener("click", (event) => {
     if (event.target.classList.contains("deleteItem")) {
         //Product Variables from DOM
