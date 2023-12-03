@@ -2,6 +2,7 @@
 const cartList = document.querySelector("#cart__items");
 const form = document.querySelector(".cart__order__form");
 
+
 //Storage Variables
 const cart = sessionStorage;
 const savedProducts = Object.keys(sessionStorage);
@@ -129,7 +130,7 @@ cartList.addEventListener("click", (event) => {
     }
 });
 
-//Form input validation
+//Form input validation and submit
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -147,7 +148,37 @@ form.addEventListener("submit", (event) => {
   } else if (!emailRGEX.test(form.email.value)) {
     alert("Please enter a valid email address");
   } else {
-    form.reset()
+  
+    //Create contact object
+    let contact = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      address: form.address.value,
+      city: form.city.value,
+      email: form.email.value,
+    };
+
+    //Create product order array
+    let products = [];
+    for (item in savedProducts){
+      let product = JSON.parse(savedProducts[item]);
+      products.push(product.id);
+    }
+  ;
+
+    fetch('http://localhost:3000/api/products/order',{
+      method: "POST",
+      body: JSON.stringify({contact: contact, products: products}),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(response => response.json())
+      .then(data => {window.location.href = "/confirmation.html?="})
+
+    
+
     alert("Thank you for your order!");
   }
 });
