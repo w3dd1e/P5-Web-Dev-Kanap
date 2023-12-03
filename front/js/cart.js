@@ -1,10 +1,16 @@
 //DOM Variables
 const cartList = document.querySelector("#cart__items");
+const form = document.querySelector(".cart__order__form");
 
 //Storage Variables
 const cart = sessionStorage;
 const savedProducts = Object.keys(sessionStorage);
 const savedQtys = Object.values(sessionStorage);
+
+//RegExp Variables
+let nameRGEX = /^[a-zA-Z]+$/;
+let emailRGEX = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+let addressRGEX = /^[a-zA-Z0-9,. ]+$/;
 
 //Function to set element values
 function setElement(selector, value) {
@@ -102,8 +108,8 @@ cartList.addEventListener("change", (event) => {
         updateTotals();
     }
 });
-//
 
+//Update cart on item deletion
 cartList.addEventListener("click", (event) => {
     if (event.target.classList.contains("deleteItem")) {
         //Product Variables from DOM
@@ -122,3 +128,27 @@ cartList.addEventListener("click", (event) => {
         updateTotals();
     }
 });
+
+//Form input validation
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (cart.length === 0) {
+    alert("Please add some items to your cart before placing an order.");
+  }
+  else if(!nameRGEX.test(form.firstName.value)) {
+    alert("First name must contain only letters");
+  } else if (form.lastName.value.length < 2 ||!nameRGEX.test(form.lastName.value)) {
+    alert("Last name must be at least 2 characters long and contain only letters");
+  } else if (form.address.value.length < 5 ||!addressRGEX.test(form.address.value)) {
+    alert("Address must be at least 5 characters long and contain only letters, numbers and symbols");
+  } else if (form.city.value.length < 2 ||!nameRGEX.test(form.city.value)) {
+    alert("City must be at least 2 characters long and contain only letters");
+  } else if (!emailRGEX.test(form.email.value)) {
+    alert("Please enter a valid email address");
+  } else {
+    form.reset()
+    alert("Thank you for your order!");
+  }
+});
+
