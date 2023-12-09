@@ -183,7 +183,8 @@ form.addEventListener("submit", (event) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                window.location.href = "./confirmation.html?=" + data.orderId;
+                window.location.href =
+                    "./confirmation.html?orderId=" + data.orderId;
             });
 
         alert("Thank you for your order!");
