@@ -173,6 +173,7 @@ form.addEventListener("submit", (event) => {
             let product = JSON.parse(savedProducts[item]);
             products.push(product.id);
         }
+        //Send Order to API
         fetch("http://localhost:3000/api/products/order", {
             method: "POST",
             body: JSON.stringify({ contact: contact, products: products }),
@@ -182,6 +183,8 @@ form.addEventListener("submit", (event) => {
             },
         })
             .then((response) => response.json())
+
+            //Empty Cart and redirect to confirmation page
             .then((data) => {
                 localStorage.clear();
                 window.location.href =
