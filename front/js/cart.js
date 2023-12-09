@@ -3,9 +3,9 @@ const cartList = document.querySelector("#cart__items");
 const form = document.querySelector(".cart__order__form");
 
 //Storage Variables
-const cart = sessionStorage;
-const savedProducts = Object.keys(sessionStorage);
-const savedQtys = Object.values(sessionStorage);
+const cart = localStorage;
+const savedProducts = Object.keys(localStorage);
+const savedQtys = Object.values(localStorage);
 
 //RegExp Variables
 let nameRGEX = /^[a-zA-Z]+$/;
@@ -183,6 +183,7 @@ form.addEventListener("submit", (event) => {
         })
             .then((response) => response.json())
             .then((data) => {
+                localStorage.clear();
                 window.location.href =
                     "./confirmation.html?orderId=" + data.orderId;
             });

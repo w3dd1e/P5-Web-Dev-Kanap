@@ -16,12 +16,11 @@ let colorOption = colorSelect.value;
 let quantity = quantitySelect.value;
 let item = {
     id: productID,
-   color: colorOption,
+    color: colorOption,
 };
 
 //Use localStorage as cart variable for easier readability
-let cart = sessionStorage;
-    
+let cart = localStorage;
 
 //Fetch Data from API then update page with returned data
 fetch(productAPI)
@@ -67,31 +66,28 @@ fetch(productAPI)
         console.error("Error:", error);
     });
 
-
- //Get color and quantiy from form then udpate cartItem object values
- colorSelect.addEventListener("change", (event) => {
+//Get color and quantiy from form then udpate cartItem object values
+colorSelect.addEventListener("change", (event) => {
     colorOption = event.target.value;
     item.color = colorOption;
 });
 quantitySelect.addEventListener("change", (event) => {
-    quantity = event.target.value;});
+    quantity = event.target.value;
+});
 
-    
-    //Add item to cart 
+//Add item to cart
 addToCart.addEventListener("click", (event) => {
     let cartItem = JSON.stringify(item);
 
-    if (colorOption===""||quantity==="0") {
+    if (colorOption === "" || quantity === "0") {
         alert("Please select a color and quantity.");
     }
     //cartItem does not work with Number(), will return NaN
     else if (cart.hasOwnProperty(cartItem)) {
-       cart[cartItem] =  Number(cart[JSON.stringify(item)]) + Number(quantity);
-       alert("Items added to cart!");
-        }
-    else {
-    cart.setItem(cartItem, quantity)
-    alert("Item added to cart!");
-}});
-
-
+        cart[cartItem] = Number(cart[JSON.stringify(item)]) + Number(quantity);
+        alert("Items added to cart!");
+    } else {
+        cart.setItem(cartItem, quantity);
+        alert("Item added to cart!");
+    }
+});
