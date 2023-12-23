@@ -1,9 +1,9 @@
 # Kanap - eCommerce #
 Project #5 Web Development - OpenClassrooms
 
-This is a forked project with prebuilt back-end API and static front-end code. All work is based on technical and functional specifications provided by the project lead. Server for API simulated with Node.js.
+This is a forked project with prebuilt back-end API and front-end html/css code. All work is based on technical and functional specifications provided by the project lead. Server for API simulated with Node.js.
 
-I am integrating the provided back-end data with the prebuilt front-end HTML and CSS by using Javascript to insert dynamic content. No libaries or frameworks used, only vanilla Javascript. 
+I am integrating the provided back-end data with the prebuilt front-end HTML/CSS by using Javascript to insert dynamic content. No libaries or frameworks used, only vanilla Javascript. 
 
 
 ## Original Readme.md Text ##
