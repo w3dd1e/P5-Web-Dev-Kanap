@@ -1,5 +1,4 @@
 # Kanap - eCommerce #
-Project #5 Web Development - OpenClassrooms
 
 This is a forked project with prebuilt back-end API and front-end html/css code. All work is based on technical and functional specifications provided by the project lead. Server for API simulated with Node.js.
 
